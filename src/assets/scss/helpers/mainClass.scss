@@ -1,0 +1,126 @@
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: $carmine; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $carmine; 
+}
+body{
+	background-image: linear-gradient(to left top, #060606, #231225, #490b30, #710025, #8b0000);
+	height: 100vh;
+}
+#app{
+	height: 100%;
+}
+.feedback{
+  background: $carmine;
+	font-size: 15px;
+  color: $pure-white;
+  margin:   0 auto;
+	padding: 10px;
+	max-width: 300px ;
+}
+// global style for recipe box
+.row{
+	padding: 10px;
+	@include media('<lg'){
+		justify-content: center;
+	}
+}
+.page-card-box{
+	margin: 35px 0 0 0;
+	cursor: pointer;
+	@include media('<lg'){
+		min-width: 310px;
+		max-width: 500px;
+	}
+	& a {
+		color: $dove-grey;
+	}
+}
+.container-fluid{
+  background: #f3f3f3;
+}
+.page-card-border{
+  color:  white;
+  background: $carmine;
+  width: 100%;
+  padding: 10px;
+}
+.page-card-image{
+  background: url('https://www.fabrykasily.pl/upload/gallery/2017/08/id_8191_1502716634_1260x410.jpg');
+  background-size: 100% 100%;
+  height: 200px;
+  width: 100%;
+  @include media('<lg'){
+    height: 200px;
+  }
+  & img {
+    background-size: 100% 100%;
+    height: 200px;
+    width: 100%;
+    @include media('<lg'){
+      height: 200px;
+    }
+  }
+}
+.page-card-title{
+  padding: 10px;
+  border-bottom: 1px solid $dove-grey;
+  & p, h3 {
+    margin: 0px; 
+    padding: 0px;
+  }
+  & p {
+    font-size: 0.9rem;
+    color: $gray;
+  }
+}
+.page-card-about{
+	border-bottom: 1px solid $dove-grey;
+  padding: 5px;
+  font-size: 20px;
+  & p{
+    font-size: 1rem;
+    margin: 0px;
+  }
+  & i {
+    color: $gray;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    padding: 15px 0 0 0;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+}
+.page-card-content{
+  border-bottom: 1px solid $dove-grey;
+  padding: 5px 0 10px 0;
+
+  &:last-child{
+    border-bottom: none;
+  }
+}
+.single-recipes-img{
+  & img {
+    width: 100%;
+    height: 500px;
+    @include media('<lg'){
+      height: 350px;
+    }
+    @include media('<md'){
+      height: 200px;
+    }
+  }
+ }

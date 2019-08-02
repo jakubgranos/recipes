@@ -1,0 +1,214 @@
+.page-action{
+  width: 100%;
+  display: flex;
+  background: $concrete;
+  
+  & .container-fluid{
+    display: flex;
+    justify-content: center;
+
+    & .row {
+      width: 100%;
+    }
+  }
+  & h1 {
+    text-align: center;
+    margin: 10px 0 0 0;
+    @include media('<lg'){
+      font-size: 25px;
+    }
+  }
+}
+.page-action-form{
+  font-family: $font-openSans;
+  background: $dove-grey;
+  color: white;
+  padding: 40px;
+  margin: 40px 10px 0 10px;
+  text-align: center;
+  @include media('<lg'){
+    padding: 40px 0  40px 0;
+  }
+  & input{
+    background: none;
+    
+    border: none;
+    border-bottom: $carmine 1px solid;
+    width: 70%;
+    padding: 8px;
+    color: white;
+    outline: none;
+    @include media('<lg'){
+      width: 100%;
+    }
+    &:focus{
+      border-bottom: 1px solid white;
+    }
+  }
+  & label {
+    margin: 5px 0 5px 0;
+  }
+  & select{
+    margin: 10px 0 0 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid $carmine;
+    @include media('<lg'){
+      width: 100%;
+    }
+  }
+  & button{
+    margin: 20px 0 10px 0;
+    border: none;
+    text-align: center; 
+    background: $carmine;
+    padding: 15px 25px 15px 25px;
+    border-radius: 20px;
+    color: white;
+  }
+  & textarea{
+    resize: none;
+    width: 70%;
+    background: none;
+    height: 100px;
+    color: $pure-white;
+    padding: 10px;
+    @include media('<lg'){
+      width: 100%;
+    }
+  }
+}
+
+.recipes-box{
+  height: fit-content;
+  color: $dove-grey;
+  font-family: $font-openSans;
+  margin: 40px 0 0 0;
+  -webkit-box-shadow: 0px 2px 16px -5px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 2px 16px -5px rgba(0,0,0,0.75);
+  box-shadow: 0px 2px 16px -5px rgba(0,0,0,0.75);
+  padding: 0px;
+  & ol{
+    & li {
+      margin: 0 10px 5px 10px;
+      padding:  0 0 10px 0;
+      border-bottom: 2px solid $carmine;
+    
+      & span {
+        background: $dove-grey;
+        color: $pure-white;
+        line-height: 63px;
+        padding: 5px;
+      }
+    }
+  }
+  & h2 {
+    text-align: center;
+    padding: 40px 0 0 0;
+  }
+}
+.moblie-gray{
+  @include media('<lg'){
+    background: $dove-grey;
+  }
+}
+.add-button {
+  position: absolute;
+  padding: 20px 0 0 0;
+  @include media('<lg'){
+    right: 25px;
+    padding: 0;
+    top: 475px;
+  }
+}
+.add-step{
+  position: absolute;
+  right: 180px;
+  padding: 10px 0 0 0;
+
+}
+.difficulties{
+  display: flex;
+  justify-content: center;
+  @include media('<lg'){
+   flex-direction: column;
+  }
+}
+.page-card-about{
+  & h3{
+    border-left: 3px solid $carmine;
+    padding:  0 0 0 5px;
+  }
+  & ol {
+    counter-reset: myCounter;
+    list-style: none;
+    & li{
+      counter-increment: myCounter;
+      font-size: 20px;
+      &::before{
+        content: "0" counter(myCounter);
+        font-size: 2.3rem;
+        padding: 0 3px 0 0;
+        color: $carmine;
+      }
+    }
+  }
+}
+.card-button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.nutritional-values{
+  display: flex; 
+  justify-content: space-between;
+  width: 100%;
+}
+.action{
+  margin: 0 0 10px 0;  
+}
+.amount_type{
+  margin: 15px 0 0 0;
+}
+.action-image{ 
+  position: relative;
+  z-index: 1;
+  &-button{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    border: 1px solid white;
+  
+    color: $pure-white;
+
+    & i {
+      font-size: 40px;
+      position: relative;
+    }
+  }
+  & input[type=file]{
+    display: none;
+  }
+}
+.imgSelected {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+.alert {
+  & p {
+    font-size: 13px;
+
+    & button {
+      border: none;
+      text-align: center; 
+      background: $carmine;
+      padding: 7px 10px 7px 10px;
+      border-radius: 20px;
+      color: white;
+    }
+  }
+}

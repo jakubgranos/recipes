@@ -1,0 +1,72 @@
+.page-recipes{
+  width: 100%;
+  display: flex;
+  background: $concrete;
+  & article{
+    width: 100%;
+  }
+}
+.page-recipe-components{
+  padding: 10px; 
+  & h1 {
+    font-size: 1.8rem; 
+    margin: 0px;     
+  }
+  & ul{
+    font-size: 20px;
+    & p {
+      font-size: 2rem;
+      border-left: 4px solid $carmine;
+      padding: 0 0 0 10px;
+    }
+    & li{
+      padding: 10px;
+      color: $pure-white;
+      background: $gray;
+      align-content: baseline;
+      display: flex;
+      font-size: 1rem;
+      & input[type='checkbox']{
+        width: 20px;
+        height: 25px;
+        background: none;
+        margin:  0 4px 0;
+      }
+    }
+  }
+}
+.page-recipe-title{
+  border-left: 4px solid $carmine;
+  padding: 0 0 0 10px;
+  min-height: 140px;
+  & i {
+    padding: 0 5px 0 0;
+  } 
+}
+.page-recipe-steps{
+  padding: 10px; 
+  display: flex;
+  & ol {
+    counter-reset: myCounter;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;   
+    & li{
+      border-bottom: 1px solid $carmine;
+      counter-increment: myCounter;
+      font-size: 1rem;
+      padding: 0 0 10px 0;
+      &::before{
+        content: "0" counter(myCounter);
+        font-size: 2.3rem;
+        color: $carmine;
+      }
+    }
+  }
+}
+.components-list{
+  & span {
+    margin:  0 15px 0 0;
+  }
+}

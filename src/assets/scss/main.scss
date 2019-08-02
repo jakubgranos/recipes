@@ -1,0 +1,32 @@
+@charset 'utf-8';
+
+/* Vendors
+   ========================================================================== */
+
+@import 'vendors/normalize.min.scss';
+@import 'vendors/include-media.scss';
+
+/* Helpers
+   ========================================================================== */
+
+@import 'helpers/breakpoints.scss';
+@import 'helpers/colors.scss';
+@import 'helpers/typography.scss';
+@import 'helpers/reset.scss';
+@import 'helpers/mainClass.scss';
+@import 'helpers/fonts.scss';
+/* Components
+    ========================================================================== */
+
+
+
+/* Modules
+   ========================================================================== */
+@import 'modules/addElement.scss';
+@import 'modules/content.scss';
+@import 'modules/auth.scss';
+@import 'modules/profile.scss';
+@import 'modules/sidebar.scss';
+@import 'modules/recipes.scss';
+@import 'modules/addingredients.scss';
+@import 'modules/list.scss';
