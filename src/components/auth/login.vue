@@ -3,11 +3,11 @@
     <div class="container auth-wrapper">
       <form v-on:submit.prevent="Login" class="auth-form">
         <h2>Zaloguj się</h2>
-        <div class="page-cardfield">
+        <div class="page-card-field">
           <label for="email">Email:</label>
           <input type="email" name="email" v-model="email">        
         </div>
-        <div class="page-cardfield">
+        <div class="page-card-field">
           <label for="password">Password:</label>
           <input type="password" name="password" v-model="password">
         </div>

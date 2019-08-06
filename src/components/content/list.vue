@@ -16,6 +16,7 @@
         </div>      
       <h1>Lista Składników - skład</h1>
       <div class="page-list-content">
+        
         <div class="page-list-card"  v-for="list in listContent" :key="listContent.id">
           <div class="page-list-title">
             <h2 class="title">{{list.name}}</h2>
@@ -56,10 +57,12 @@
 import sidebar from '@/components/navbar/sidebar'
 import firebase from 'firebase'
 import database from '@/firebase/init'
+import products from '@/components/action/handleProductsChange'
 export default {
   name: 'addingredient',
   components: {
-    'app-sidebar': sidebar 
+    'app-sidebar': sidebar,
+    'app-products': products 
   },
   data(){
     return {

@@ -6,13 +6,12 @@
       <div class="container-fluid">
         <div class="search">
           <input type="text" name="search" v-model="search" placeholder="Szukaj na stronie...">
-          <p>* Zwróć uwagę czy CapsLock nie jest właczony</p>          
         </div>
         <div class="row">
           <div class="col-lg-4 col-sm-12 page-card-box" v-for="recipe in filteredRecipe" :key="recipe.id">
             <router-link :to="{name: 'recipes', params:{slug: recipe.slug}}">
-            <div class="page-card-image">
-              <img v-bind:src="recipe.img" alt="">
+            <div class="page-card-image ">
+              <img v-bind:src="recipe.img" v-bind:alt="recipe.title">
             </div>
             <div class="page-card-title">
               <h3>{{recipe.title}}</h3>
@@ -48,7 +47,7 @@ export default {
     }
   },
   created(){
-    database.collection('recipes').get()
+    database.collection('recipes').orderBy("title", "asc").get()
     .then(snapshot => {
       snapshot.forEach(doc => {
         let recipe = doc.data()

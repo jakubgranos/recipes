@@ -3,7 +3,7 @@
     <app-sidebar></app-sidebar>    
     <article class="container-fluid">
       <div class="single-recipes-img">
-        <img v-bind:src="recipes.img" alt="">
+        <img v-bind:src="recipes.img" v-bind:alt="recipes.title">
       </div>
       <div class="row">
         <div class="page-recipe-components col-lg-6">
@@ -53,7 +53,6 @@ export default {
       snapshot.forEach(doc => {
         this.recipes = doc.data()
         this.recipes.id = doc.id
-      console.log(doc.data())
       })
     })
   }

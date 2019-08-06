@@ -57,20 +57,23 @@ body{
   width: 100%;
   padding: 10px;
 }
-.page-card-image{
+.page-card-main{
   background: url('https://www.fabrykasily.pl/upload/gallery/2017/08/id_8191_1502716634_1260x410.jpg');
   background-size: 100% 100%;
-  height: 200px;
+  height: 250px;
   width: 100%;
   @include media('<lg'){
     height: 200px;
   }
+}
+.page-card-image{
+  height: 250px;
   & img {
     background-size: 100% 100%;
-    height: 200px;
     width: 100%;
+    max-height: 250px;
     @include media('<lg'){
-      height: 200px;
+      
     }
   }
 }

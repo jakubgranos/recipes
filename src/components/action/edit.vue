@@ -23,14 +23,9 @@
               <form @submit.prevent="addElement">
                 <label for='amount'>Wpisz ilosć gram:</label>
                 <input type="number" v-model="amount">
-                <select v-model="listValue">
-                  <option  :value="list" v-for="list in newElement">{{list.name +' '+ list.producent}}</option>
-                </select>
+                  <app-products v-bind:newElement="newElement" v-on:changeValue="updateValue($event)"></app-products>
                 <div class="amount_type">
                   <label>Wpisz typ:</label>
-                  <div class="action">
-                    <input type="text"  placeholder="łyżka..." v-model="type" required>                   
-                  </div>
                 </div>                            
                 <button >dodaj składnik</button>
               </form>
@@ -65,13 +60,7 @@
                 </label>
                 <input type="file" accept="image/png, .jpeg, .jpg," name="img[]" id="recipes-img" @change="fileSelect">                
               </div>
-              <img v-bind:src="image" id="img" v-bind:alt="title" class="imgSelected">
-            </div>
-            <div class="alert alert-danger" role="alert" v-if="waringAlert">
-              <p>błąd 404 pliku nie znaleziono - Proszę kliknąć przycisk <button v-on:click="clickme"> napraw</button> aby załadować zdjęcie ponownie</p>
-            </div>
-            <div class="alert alert-warning" role="alert" v-if="helpAlert">
-              <p>W ramach jakichkolwiek problemów z odczytaniem zdjęcia, Proszę kliknać przycisk<button v-on:click="clickme"> napraw</button></p>
+              <img v-bind:src="recipes.img" id="img" v-bind:alt="title" class="imgSelected">
             </div>             
             <div class="page-card-title">
               <h3>Tytuł: {{recipes.title}}</h3>
@@ -94,14 +83,16 @@
               </div>
               <div class="page-card-content">
                 <h3>Składniki</h3>
-                <ol>
-                  <li v-for="(comp, index) in recipes.components" :key="index">{{comp.type + ' ' + '- '}}{{comp.name + ', ' + comp.producent + ', ' + 'kalorie: ' + comp.kcal}}
+                <ol class="components-list">
+                  <li v-for="(comp, index) in recipes.components" :key="index">
+                    <span>{{comp.amount + 'g ' + '- '}}{{comp.name + ', ' + comp.producent + ', ' + 'kalorie: ' + comp.kcal}}
+                    <i class="fas fa-trash" v-on:click="deleteElement(comp)"></i>
+                    </span>
                     <span>Weglowodany: {{comp.carbohydrates}} g</span>
                     <span>tłuszcze: {{comp.fat}} g</span>
                     <span>Białko: {{comp.protein}} g</span>
                     <span>Sól: {{comp.salt}} g</span>
                     <span>Cukry: {{comp.sugar}} g</span>                    
-                    <i class="fas fa-trash" v-on:click="deleteElement(comp)"></i>
                   </li>
                   <span>Suma kalori w daniu: <b>{{calc}} kcal</b></span>
                 </ol>                
@@ -120,11 +111,12 @@ import slugify from 'slugify'
 import sidebar from '@/components/navbar/sidebar'
 import { constants } from 'fs';
 import { setInterval } from 'timers';
-
+import products from '@/components/action/handleProductsChange'
 export default {
-  name: 'addEmenet',
+  name: 'edit',
   components:{
-    'app-sidebar': sidebar
+    'app-sidebar': sidebar,
+    'app-products': products
   },
   data() {
     return {
@@ -147,56 +139,34 @@ export default {
       calc: null,
       amount: null,
       numberOfType: [],
-      type: null,
       image: [],
-      waringAlert: null,
-      helpAlert: null
    }
   },
   methods: {
-    fileSelect(event){
-      let file  = event.target.files[0];
-      let storage = firebase.storage();
-      let pathRef = storage.ref(this.user.email +'/' + this.title);
-      let linkRef = storage.refFromURL('gs://recipes-d7c43.appspot.com');
-      pathRef.put(file)
-      setTimeout(() => {
-      this.helpAlert = "alert"
-      linkRef.child(this.user.email +'/' + this.title).getDownloadURL().then((url) => {
-        img.src = url
-        this.image = url
-      }).catch((error) => {
-       console.log(error.message)
-       this.waringAlert = error.message
-      });        
-      }, 2000);
+    updateValue: function(updatedValue){
+      this.listValue = updatedValue
     },
-    clickme(){
-      this.waringAlert = null
-      this.helpAlert = null
-      let storage = firebase.storage();
-      let pathRef = storage.ref(this.user.email +'/' + this.title);
-      let linkRef = storage.refFromURL('gs://recipes-d7c43.appspot.com');      
-      linkRef.child(this.user.email +'/' + this.title).getDownloadURL().then(function(url) {
-        img.src = url
-        this.image = url        
-      }).catch(function(error) {
-        
-      });
+    fileSelect ({ target: { files: {0: file} } }) {
+      const storageRef = firebase.storage().ref();
+      const uploadFile = storageRef.child(`${this.user.email}/${file.name}`).put(file);
+      uploadFile.then(snapshot => {
+        snapshot.ref.getDownloadURL().then(url => this.image = url )
+      },error => {
+        console.error(error);
+      })
     },
     addElement(){
       if(this.newElement){  
+        this.listValue.amount = Number(this.amount)
         this.recipes.components.push(this.listValue)
-        this.listValue.type = this.type
         let myMath = this.recipes.components.map(item => item.kcal)
         this.calc = Math.floor(myMath.reduce((a, b) => a + b, 0) * this.amount / 100)
       }else {
         this.feedback = "Musisz uzupełnić wszystkie pola"
       }
-    },    
+    },   
     submitRecipe(){
       if(this.recipes.title){
-        this.recipes.title = this.recipes.title.toLowerCase()
         this.feedback = null
         this.recipes.slug = slugify(this.recipes.title, {
           replacement: '-',
@@ -252,30 +222,6 @@ export default {
   
   },
   created(){
-    let user  = firebase.auth().currentUser
-    firebase.auth().onAuthStateChanged((user) => {
-      if(user){
-        this.user = user
-      }else{
-        this.user = null
-      }
-    })
-    let ref = database.collection("products")
-    ref.get()
-    .then(snapshot => {
-      snapshot.forEach(doc => {
-          this.newElement.push({
-            name: doc.data().name,
-            producent: doc.data().producent,
-            kcal: doc.data().kcal,
-            carbohydrates:doc.data().carbohydrates,
-            fat: doc.data().fat,
-            protein: doc.data().protein,
-            salt: doc.data().salt,
-            sugar: doc.data().sugar,
-          })
-      });
-    })
     let refMain =  database.collection('users').doc(this.user.email).collection('recipes').where('slug','==', this.$route.params.slug)
     refMain.get().then(snapshot => {
       snapshot.forEach(doc => {

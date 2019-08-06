@@ -6,14 +6,13 @@
       <div class="container-fluid">
         <div class="search">
           <input type="text" name="search" v-model="search"  placeholder="Szukaj na stronie...">
-          <p>* Zwróć uwagę czy CapsLock nie jest właczony</p>
           <p class="feedback" v-if="feedback">{{feedback}}</p>
         </div>        
         <div class="row">
           <div class="col-lg-4 col-sm-12 page-card-box" v-for="recipe in filteredRecipe" v-bind:key="recipe.id">
             <router-link :to="{name: 'userView', params:{slug: recipe.slug}}">
             <div class="page-card-image">
-              <img v-bind:src="recipe.img" id="img" alt="moje zdj">
+              <img v-bind:src="recipe.img" id="img" v-bind:alt="recipe.title">
             </div>            
             <div class="page-card-title">
               <h3>{{recipe.title}}</h3>
@@ -29,7 +28,7 @@
               <router-link :to="{name: 'edit', params:{slug: recipe.slug}}"><i class="fas fa-pencil-alt"></i></router-link>            
               <i class="fas fa-share-alt"
               v-on:click="share(recipe.img, recipe.id, recipe.title, recipe.slug, recipe.description, recipe.levels, recipe.time, recipe.components, recipe.steps)"></i>
-            </div>          
+            </div>
           </div>
         </div>       
       </div>
@@ -56,6 +55,7 @@ export default {
       feedback: null,
       search: '',
       timestamp: [],
+      recipesAlt: null
     }
   },
   methods:{
@@ -98,7 +98,6 @@ export default {
     
   },
   created(){ 
-    this.search = this.search.toLowerCase()    
     let ref = database.collection('users').doc(this.user.email).collection('recipes').orderBy('timestamp', 'asc')
     ref.onSnapshot(snapshot => {
       snapshot.docChanges().forEach(change => {
@@ -116,7 +115,7 @@ export default {
             img: doc.data().img
           })
         }
-      });      
+      });
     })
   },
   computed: {

@@ -58,7 +58,6 @@
         </form>        
       </div>
     </div>
-    <button v-on:click="test">dodaj skladnik</button>
   </section>
 </template>
 <script>
@@ -89,10 +88,6 @@ export default {
     }
   },
   methods: {
-    test(){
-      let test1 = 'my name is jackob'
-      console.log(this.name.length)
-    },
     addingredient(){
       if(this.name.length && this.producent.lenght >= 3){
         let ref = database.collection('products').doc(this.name +' '+ this.producent)
