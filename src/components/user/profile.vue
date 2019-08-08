@@ -103,17 +103,9 @@ export default {
       snapshot.docChanges().forEach(change => {
         if(change.type == 'added'){
           let doc = change.doc
-          this.recipes.push({
-            id: doc.id,
-            title: doc.data().title,
-            slug: doc.data().slug,
-            time: doc.data().time,
-            description: doc.data().description,
-            levels: doc.data().levels,
-            components: doc.data().components,
-            steps: doc.data().steps,
-            img: doc.data().img
-          })
+          let docs = doc.data()
+          docs.id = doc.id
+          this.recipes.push(docs)
         }
       });
     })

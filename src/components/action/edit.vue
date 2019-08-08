@@ -1,56 +1,58 @@
 <template>
   <section class="page-action">
     <app-sidebar></app-sidebar>        
-    <div class="container-fluid">     
-      <div class="row">
-        <div class="col-lg-6 col-sm-12 moblie-gray">
-          <form v-on:submit.prevent="submitRecipe" class="page-action-form">
-            <div class="page-card-field">
-              <label for="title">Tytuł przepisu</label><br>
-              <input type="text" name="title" v-model="recipes.title">
-            </div>
-            <div class="page-card-field">
-              <label for="description">Opis:</label><br>
-              <textarea name="description" placeholder="Opis przepisu..." v-model="recipes.description"></textarea>
-            </div>
-            <div class="page-card-field card-button">
-              <label for="steps" class="steps">Kroki przygotowania:</label><br>
-              <textarea name="steps" v-on:keydown.tab.prevent="addSteps" v-model="newSteps" placeholder="Obierz ziemniaki...">etap tworzenia...</textarea>
-              <button v-on:click.prevent="addSteps">Dodaj krok</button>
-            </div>            
-            <div class="page-card-field card-button">
-              <label for="list">Wybierz składnik z listy:</label>
-              <form @submit.prevent="addElement">
-                <label for='amount'>Wpisz ilosć gram:</label>
-                <input type="number" v-model="amount">
-                  <app-products v-bind:newElement="newElement" v-on:changeValue="updateValue($event)"></app-products>
-                <div class="amount_type">
-                  <label>Wpisz typ:</label>
-                </div>                            
-                <button >dodaj składnik</button>
-              </form>
-            </div>
-            <div class="page-card-field difficulties">
-              <div class="levles">
-                <label for="levels">Trudność</label><br>
-                <select name="levels" v-model="recipes.levels" required>
-                  <option value="Bardzo łatwy">Bardzo łatwy</option>
-                  <option value="łatwy">łatwy</option>
-                  <option value="Średni">Średni</option>
-                  <option value="Trudny">Trudny</option>
-                </select>
+    <div class="content">
+      <div class="page-card-border"></div>      
+      <div class="container-fluid">     
+        <div class="row">
+          <div class="col-lg-6 col-sm-12 moblie-gray">
+            <form v-on:submit.prevent="submitRecipe" class="page-action-form">
+              <div class="page-card-field">
+                <label for="title">Tytuł przepisu</label><br>
+                <input type="text" name="title" v-model="recipes.title">
               </div>
-              <div class="time">
-                <label for="time">Czas wykonania:</label><br>
-                <input type="number" name="time" min="1" max="999" v-model="recipes.time" > 
-              </div>                         
-            </div>                                    
-            <div class="page-card-field">
-              <button>Dodaj przepis</button>
-            </div>
-            <p v-if="feedback" class="feedback">{{feedback}}</p>                        
-          </form>
-        </div>
+              <div class="page-card-field">
+                <label for="description">Opis:</label><br>
+                <textarea name="description" placeholder="Opis przepisu..." v-model="recipes.description"></textarea>
+              </div>
+              <div class="page-card-field card-button">
+                <label for="steps" class="steps">Kroki przygotowania:</label><br>
+                <textarea name="steps" v-on:keydown.tab.prevent="addSteps" v-model="newSteps" placeholder="Obierz ziemniaki...">etap tworzenia...</textarea>
+                <button v-on:click.prevent="addSteps">Dodaj krok</button>
+              </div>            
+              <div class="page-card-field card-button">
+                <label for="list">Wybierz składnik z listy:</label>
+                <form @submit.prevent="addElement">
+                  <label for='amount'>Wpisz ilosć gram:</label>
+                  <input type="number" v-model="amount">
+                    <app-products v-bind:newElement="newElement" v-on:changeValue="updateValue($event)"></app-products>
+                  <div class="amount_type">
+                    <label>Wpisz typ:</label>
+                  </div>                            
+                  <button >dodaj składnik</button>
+                </form>
+              </div>
+              <div class="page-card-field difficulties">
+                <div class="levles">
+                  <label for="levels">Trudność</label><br>
+                  <select name="levels" v-model="recipes.levels" required>
+                    <option value="Bardzo łatwy">Bardzo łatwy</option>
+                    <option value="łatwy">łatwy</option>
+                    <option value="Średni">Średni</option>
+                    <option value="Trudny">Trudny</option>
+                  </select>
+                </div>
+                <div class="time">
+                  <label for="time">Czas wykonania:</label><br>
+                  <input type="number" name="time" min="1" max="999" v-model="recipes.time" > 
+                </div>                         
+              </div>                                    
+              <div class="page-card-field">
+                <button>Dodaj przepis</button>
+              </div>
+              <p v-if="feedback" class="feedback">{{feedback}}</p>                        
+            </form>
+          </div>
           <div class="col-lg-6 col-sm-12 recipes-box">
             <div class="page-card-image">
               <div class="action-image">
@@ -99,9 +101,9 @@
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
-
   </section>
 </template>
 <script>

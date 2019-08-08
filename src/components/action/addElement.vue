@@ -1,105 +1,106 @@
 <template>
   <section class="page-action">
     <app-sidebar></app-sidebar>        
-    <div class="container-fluid">     
-      <div class="row">
-        <div class="col-lg-6 col-sm-12 moblie-gray">
-          <form v-on:submit.prevent="submitRecipe" class="page-action-form">
-            <div class="page-card-field">
-              <label for="title">Tytuł przepisu</label><br>
-              <input type="text" name="title" v-model="title">
-            </div>
-            <div class="page-card-field">
-              <label for="description">Opis:</label><br>
-              <textarea name="description" placeholder="Opis przepisu..." v-model="description"></textarea>
-            </div>
-            <div class="page-card-field card-button">
-              <label for="steps" class="steps">Kroki przygotowania:</label><br>
-              <textarea name="steps" v-on:keydown.tab.prevent="addSteps" v-model="newSteps" placeholder="Obierz ziemniaki...">etap tworzenia...</textarea>
-              <button v-on:click.prevent="addSteps">Dodaj krok</button>
-            </div>            
-            <div class="page-card-field card-button">
-              <label for="list">Wybierz składnik z listy:</label>
-              <form @submit.prevent="addElement">
-                <label for='amount'>Wpisz ilosć gram:</label>
-                <input type="number" v-model="amount">
-                  <app-products v-bind:newElement="newElement" v-on:changeValue="updateValue($event)"></app-products>
-                <button >dodaj składnik</button>
-              </form>
-            </div>
-            <div class="page-card-field difficulties">
-              <div class="levles">
-                <label for="levels">Trudność</label><br>
-                <select name="levels" v-model="levels" required>
-                  <option value="Bardzo łatwy">Bardzo łatwy</option>
-                  <option value="łatwy">łatwy</option>
-                  <option value="Średni">Średni</option>
-                  <option value="Trudny">Trudny</option>
-                </select>
+    <div class="content">
+      <div class="page-card-border"></div>      
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12 moblie-gray">
+            <form v-on:submit.prevent="submitRecipe" class="page-action-form">
+              <div class="page-card-field">
+                <label for="title">Tytuł przepisu</label><br>
+                <input type="text" name="title" v-model="title">
               </div>
-              <div class="time">
-                <label for="time">Czas wykonania:</label><br>
-                <input type="number" name="time" min="1" max="999" v-model="time" > 
-              </div>                         
-            </div>                                    
-            <div class="page-card-field">
-              <button>Dodaj przepis</button>
-            </div>
-            <p v-if="feedback" class="feedback">{{feedback}}</p>                        
-          </form>
-        </div>
-          <div class="col-lg-6 col-sm-12 recipes-box">
-            <div class="page-card-image">
-              <div class="action-image">
-                <label for="recipes-img"  class="action-image-button" v-if="title">
-                  <i class="fas fa-image"></i>
-                  <p>kliknij aby wybrać zdjecie</p>
-                </label>
-                <input type="file" accept="image/png, .jpeg, .jpg," name="img[]" id="recipes-img" @change="fileSelect">                
+              <div class="page-card-field">
+                <label for="description">Opis:</label><br>
+                <textarea name="description" placeholder="Opis przepisu..." v-model="description"></textarea>
               </div>
-              <img v-bind:src="image" id="img" v-bind:alt="title" class="imgSelected">
-            </div>            
-            <div class="page-card-title">
-              <h3>Tytuł: {{title}}</h3>
-              <div v-bind:listValue='listValue'>11231</div>
-            </div>
-            <div class="page-card-about">
-              <div class="page-card-content">
-                <p><i class="far fa-clock"></i>Czas wykonania: {{time + ' ' + 'min'}}</p>
-                <p><i class="fas fa-thermometer-quarter"></i> Stopien trudności: {{levels}}</p>
+              <div class="page-card-field card-button">
+                <label for="steps" class="steps">Kroki przygotowania:</label><br>
+                <textarea name="steps" v-on:keydown.tab.prevent="addSteps" v-model="newSteps" placeholder="Obierz ziemniaki...">etap tworzenia...</textarea>
+                <button v-on:click.prevent="addSteps">Dodaj krok</button>
+              </div>            
+              <div class="page-card-field card-button">
+                <label for="list">Wybierz składnik z listy:</label>
+                <form @submit.prevent="addElement">
+                  <label for='amount'>Wpisz ilosć gram:</label>
+                  <input type="number" v-model="amount">
+                    <app-products v-bind:newElement="newElement" v-on:changeValue="updateValue($event)"></app-products>
+                  <button >dodaj składnik</button>
+                </form>
               </div>
-              <div class="page-card-content">
-                <h3>Opis</h3>
-                <p>{{description}}</p>
+              <div class="page-card-field difficulties">
+                <div class="levles">
+                  <label for="levels">Trudność</label><br>
+                  <select name="levels" v-model="levels" required>
+                    <option value="Bardzo łatwy">Bardzo łatwy</option>
+                    <option value="łatwy">łatwy</option>
+                    <option value="Średni">Średni</option>
+                    <option value="Trudny">Trudny</option>
+                  </select>
+                </div>
+                <div class="time">
+                  <label for="time">Czas wykonania:</label><br>
+                  <input type="number" name="time" min="1" max="999" v-model="time" > 
+                </div>                         
+              </div>                                    
+              <div class="page-card-field">
+                <button>Dodaj przepis</button>
               </div>
-              <div class="page-card-content">
-                <h3>Kroki przugotowania:</h3>
-                <ol>
-                  <li v-for="(myStep, index) in steps" :key="index">{{myStep}}
-                  <i class="fas fa-trash" v-on:click="deleteStep(myStep)"></i></li>
-                </ol>                
-              </div>
-              <div class="page-card-content">
-                <h3>Składniki</h3>
-                <ol class="components-list">
-                  <li v-for="(comp, index) in components" :key="index">
-                    <span>{{comp.amount + 'g ' + '- '}}{{comp.name + ', ' + comp.producent + ', ' + 'kalorie: ' + comp.kcal}}
-                    <i class="fas fa-trash" v-on:click="deleteElement(comp)"></i>
-                    </span>
-                    <span>Weglowodany: {{comp.carbohydrates}} g</span>
-                    <span>tłuszcze: {{comp.fat}} g</span>
-                    <span>Białko: {{comp.protein}} g</span>
-                    <span>Sól: {{comp.salt}} g</span>
-                    <span>Cukry: {{comp.sugar}} g</span>                    
-                  </li>
-                  <span>Suma kalori w daniu: <b>{{calc}} kcal</b></span>
-                </ol>                
-              </div>
-            </div>
+              <p v-if="feedback" class="feedback">{{feedback}}</p>                        
+            </form>
           </div>
+            <div class="col-lg-6 col-sm-12 recipes-box">
+              <div class="page-card-image">
+                <div class="action-image">
+                  <label for="recipes-img"  class="action-image-button" v-if="title">
+                    <i class="fas fa-image"></i>
+                    <p>kliknij aby wybrać zdjecie</p>
+                  </label>
+                  <input type="file" accept="image/png, .jpeg, .jpg," name="img[]" id="recipes-img" @change="fileSelect">                
+                </div>
+                <img v-bind:src="image" id="img" v-bind:alt="title" class="imgSelected">
+              </div>            
+              <div class="page-card-title">
+                <h3>Tytuł: {{title}}</h3>
+              </div>
+              <div class="page-card-about">
+                <div class="page-card-content">
+                  <p><i class="far fa-clock"></i>Czas wykonania: {{time + ' ' + 'min'}}</p>
+                  <p><i class="fas fa-thermometer-quarter"></i> Stopien trudności: {{levels}}</p>
+                </div>
+                <div class="page-card-content">
+                  <h3>Opis</h3>
+                  <p>{{description}}</p>
+                </div>
+                <div class="page-card-content">
+                  <h3>Kroki przugotowania:</h3>
+                  <ol>
+                    <li v-for="(myStep, index) in steps" :key="index">{{myStep}}
+                    <i class="fas fa-trash" v-on:click="deleteStep(myStep)"></i></li>
+                  </ol>                
+                </div>
+                <div class="page-card-content">
+                  <h3>Składniki</h3>
+                  <ol class="components-list">
+                    <li v-for="(comp, index) in components" :key="index">
+                      <span>{{comp.amount + 'g ' + '- '}}{{comp.name + ', ' + comp.producent + ', ' + 'kalorie: ' + comp.kcal}}
+                      <i class="fas fa-trash" v-on:click="deleteElement(comp)"></i>
+                      </span>
+                      <span>Weglowodany: {{comp.carbohydrates}} g</span>
+                      <span>tłuszcze: {{comp.fat}} g</span>
+                      <span>Białko: {{comp.protein}} g</span>
+                      <span>Sól: {{comp.salt}} g</span>
+                      <span>Cukry: {{comp.sugar}} g</span>                    
+                    </li>
+                    <span>Suma kalori w daniu: <b>{{calc}} kcal</b></span>
+                  </ol>                
+                </div>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
-
   </section>
 </template>
 <script>

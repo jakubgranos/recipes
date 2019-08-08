@@ -27,16 +27,9 @@ export default {
     ref.get()
     .then(snapshot => {
       snapshot.forEach(doc => {
-          this.newElement.push({
-            name: doc.data().name,
-            producent: doc.data().producent,
-            kcal: doc.data().kcal,
-            carbohydrates:doc.data().carbohydrates,
-            fat: doc.data().fat,
-            protein: doc.data().protein,
-            salt: doc.data().salt,
-            sugar: doc.data().sugar,
-          })
+        let docs = doc.data()
+        docs.id = doc.id
+        this.newElement.push(docs)
       });
     })
   },

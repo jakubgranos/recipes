@@ -2,18 +2,7 @@
   <section class="page-list-ingredient">
     <app-sidebar></app-sidebar>
     <div class="content">
-      <div class="page-card-border"></div>
-      <div class="alert alert-primary" role="alert">
-        <p><b>Uwaga! Poniżej zostaną podane Średnie zapotrzebowanie na dzien dla przeciętnego człowieka</b> <br>Dzienne zapotrzebowanie energetyczne wzrasta podczas intensywnego wysiłku fizycznego oraz podczas wzrostu i rozwoju organizmu, ciąży i okresu karmienia oraz rekonwalescencji.
-        Średnie dzienne zapotrzebowanie energetyczne dla osób o umiarkowanej aktywności fizycznej wynosi:</p>
-        <span><b>2000 kcal dla kobiety</b></span><br/>
-        <span><b>2500 kcal dla mężczyzny.</b></span>        
-        <p>Węglowodany <b>ok M/340g K/270g</b></p>
-        <p>Białko <b> ok M/60g K/50g</b></p>
-        <p>tłuszcz nie wiecej niż <b> M/80g K/70g</b></p>
-        <p>Sól nie wiecej niż <b>M/6g K/6g</b></p>
-        <p>Cukry nie wiecej niż <b>M/110g K/90g</b></p>                  
-        </div>      
+      <div class="page-card-border"></div>      
       <h1>Lista Składników - skład</h1>
       <div class="page-list-content">
         
