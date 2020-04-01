@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     addingredient(){
-      if(this.name.length && this.producent.lenght >= 3){
+      if(this.name.length && this.producent.length >= 3){
         let ref = database.collection('products').doc(this.name +' '+ this.producent)
         ref.set({
           name: this.name,

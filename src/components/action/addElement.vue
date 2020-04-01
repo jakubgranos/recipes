@@ -74,7 +74,7 @@
                   <p>{{description}}</p>
                 </div>
                 <div class="page-card-content">
-                  <h3>Kroki przugotowania:</h3>
+                  <h3>Kroki przygotowania:</h3>
                   <ol>
                     <li v-for="(myStep, index) in steps" :key="index">{{myStep}}
                     <i class="fas fa-trash" v-on:click="deleteStep(myStep)"></i></li>

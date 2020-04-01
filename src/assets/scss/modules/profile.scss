@@ -1,24 +1,28 @@
-.page-profile{
+.page-profile {
   width: 100%;
   display: flex;
   height: 100%;
   background: $concrete;
 }
-.profile{
+
+.profile {
   width: 100%;
-  & h3{
+
+  & h3 {
     margin: 0px;
     padding: 10px;
   }
-  &-title{
+
+  &-title {
     color:  white;
     padding: 10px;
   }
 
-  & ul{
+  & ul {
     display: flex;
     flex-wrap: wrap;
     padding: 0 46px 10px 0px;
+    
     & li {
       color: white;
       background: #092140;
@@ -28,23 +32,25 @@
     }
   }
 
-  &-recipes-box{
+  &-recipes-box {
     cursor: pointer;
     margin: 40px 10px 0 10px;
     padding: 0px;
     -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
-    @include media('<xl'){
+    
+    @include media('<xl') {
       min-width: 300px;
       max-width: 500px;
     }
+    
     & a {
       color: $dove-grey;
     }
   }
 
-  &-action{
+  &-action {
     text-align: center;
     background: $dove-grey;
     color: $pure-white;
@@ -52,6 +58,7 @@
     align-items: baseline;
     justify-content: space-around;
     padding: 10px 0 10px 0;
+    
     & a {
       color: $pure-white;
     }

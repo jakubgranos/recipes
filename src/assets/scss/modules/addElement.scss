@@ -1,9 +1,9 @@
-.page-action{
+.page-action {
   width: 100%;
   display: flex;
   background: $concrete;
   
-  & .container-fluid{
+  & .container-fluid {
     display: flex;
     justify-content: center;
 
@@ -11,53 +11,63 @@
       width: 100%;
     }
   }
+
   & h1 {
     text-align: center;
     margin: 10px 0 0 0;
-    @include media('<lg'){
+    
+    @include media('<lg') {
       font-size: 25px;
     }
   }
 }
-.page-action-form{
+
+.page-action-form {
   font-family: $font-openSans;
   background: $dove-grey;
   color: white;
   padding: 40px;
   margin: 40px 10px 0 10px;
   text-align: center;
-  @include media('<lg'){
+
+  @include media('<lg') {
     padding: 40px 0  40px 0;
   }
-  & input{
+
+  & input {
     background: none;
-    
     border: none;
     border-bottom: $carmine 1px solid;
     width: 70%;
     padding: 8px;
     color: white;
     outline: none;
-    @include media('<lg'){
+
+    @include media('<lg') {
       width: 100%;
     }
-    &:focus{
+
+    &:focus {
       border-bottom: 1px solid white;
     }
   }
+
   & label {
     margin: 5px 0 5px 0;
   }
-  & select{
+  
+  & select {
     margin: 10px 0 0 0;
     background: none;
     border: none;
     border-bottom: 1px solid $carmine;
-    @include media('<lg'){
+    
+    @include media('<lg') {
       width: 100%;
     }
   }
-  & button{
+
+  & button {
     margin: 20px 0 10px 0;
     border: none;
     text-align: center; 
@@ -66,20 +76,22 @@
     border-radius: 20px;
     color: white;
   }
-  & textarea{
+  
+  & textarea {
     resize: none;
     width: 70%;
     background: none;
     height: 100px;
     color: $pure-white;
     padding: 10px;
-    @include media('<lg'){
+    
+    @include media('<lg') {
       width: 100%;
     }
   }
 }
 
-.recipes-box{
+.recipes-box {
   height: fit-content;
   color: $dove-grey;
   font-family: $font-openSans;
@@ -88,24 +100,29 @@
   -moz-box-shadow: 0px 2px 16px -5px rgba(0,0,0,0.75);
   box-shadow: 0px 2px 16px -5px rgba(0,0,0,0.75);
   padding: 0px;
+  
   & li {
     margin: 0px 10px 5px 10px;
     padding:  0 0 10px 0;
     border-bottom: 2px solid $carmine;
   }
+
   & h2 {
     text-align: center;
     padding: 40px 0 0 0;
   }
 }
+
 .components-list {
   counter-reset: myCounter;
-    & li {
+  
+  & li {
     margin: 0px 10px 5px 10px;
     padding:  0 0 10px 0;
     border-bottom: 2px solid $carmine;
     display: flex;
     flex-direction: column;
+
     & span {
       background: $dove-grey;
       color: $pure-white;
@@ -113,12 +130,14 @@
       margin: 10px 0 0 0;
       font-size: 14px;
     }
-    & span:nth-child(1){
+    
+    & span:nth-child(1) {
       counter-increment: myCounter;
       background: none;
       color: $dove-grey;
       font-size: 20px;
-      &::before{
+
+      &::before {
         content: "0" counter(myCounter);
         font-size: 2.3rem;
         padding: 0 3px 0 0;
@@ -127,11 +146,13 @@
     }
   }
 }
-.moblie-gray{
-  @include media('<lg'){
+
+.moblie-gray {
+  @include media('<lg') {
     background: $dove-grey;
   }
 }
+
 .add-button {
   position: absolute;
   padding: 20px 0 0 0;
@@ -141,45 +162,52 @@
     top: 475px;
   }
 }
-.add-step{
+
+.add-step {
   position: absolute;
   right: 180px;
   padding: 10px 0 0 0;
-
 }
-.difficulties{
+
+.difficulties {
   display: flex;
   justify-content: center;
-  @include media('<lg'){
+
+  @include media('<lg') {
    flex-direction: column;
   }
 }
-.page-card-about{
-  & h3{
-    border-left: 3px solid $carmine;
-    padding:  0 0 0 5px;
-  }
+
+.page-card-about h3 {
+  border-left: 3px solid $carmine;
+  padding:  0 0 0 5px;
 }
-.card-button{
+
+.card-button {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.nutritional-values{
+
+.nutritional-values {
   display: flex; 
   justify-content: space-between;
   width: 100%;
 }
-.action{
+
+.action {
   margin: 0 0 10px 0;  
 }
-.amount_type{
+
+.amount_type {
   margin: 15px 0 0 0;
 }
-.action-image{ 
+
+.action-image { 
   position: relative;
   z-index: 1;
-  &-button{
+
+  &-button {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -188,25 +216,29 @@
     height: 200px;
     color: $pure-white;
     cursor: pointer;
+    
     & i {
       color: $color-black;
       font-size: 40px;
       position: relative;
     }
+    
     & p {
       color: $color-black;
     }
   }
-  & input[type=file]{
+
+  & input[type=file] {
     display: none;
-    
   }
 }
+
 .imgSelected {
   position: absolute;
   top: 0;
   z-index: 0;
 }
+
 .alert {
   & p {
     font-size: 13px;

@@ -1,35 +1,42 @@
-.sidebar{
+.sidebar {
   color: $concrete;
   min-width: 230px;
   height: 100vh;
-  @include media('<lg'){
+  
+  @include media('<lg') {
     min-width: 0px;
     height: 0vh;
   }
-  & nav{
+
+  & nav {
     padding: 5px;
     font-size: 19px;
+    
     & ul {
       display: flex;
       flex-direction: column;
+      
       & li {
         border-left: 4px solid $carmine;
         color: $pure-white;
         padding: 10px;
         transition: 0.5s ease all;
         cursor: pointer;
-        &:hover{
+      
+        &:hover {
           background: $pure-white;
           color: $cod-gray;
         }
       }
     }
-    & a{
+
+    & a {
       margin: 10px 0 10px 0;
     }
   }
 }
-.naviagtion{
+
+.naviagtion {
   width: 230px;
   padding:  0 0 0 5px;
   background: $cod-gray;
@@ -41,20 +48,23 @@
   height: 100%;
   visibility: visible;
   opacity: 1;
-  @include media('<lg'){
+
+  @include media('<lg') {
     overflow: hidden;
     transition: 0.5s all;
     width: 100%;
     justify-content: space-around;
   }
 }
-.active{
-  @include media('<lg'){
+
+.active {
+  @include media('<lg') {
     visibility: hidden;
     opacity: 0;
   }
 }
-.hamburger{
+
+.hamburger {
   color: $pure-white;
   z-index: 11;
   font-size: 2rem;
@@ -65,7 +75,8 @@
   padding: 0 10px 0 10px;
   border-radius: 10px;
   display: none;
-  @include media('<lg'){
+
+  @include media('<lg') {
     display: block;
   }
 }
